@@ -32,6 +32,12 @@ $REX['GG'] = false;
 $REX['HTDOCS_PATH'] = '../';
 require 'include/master.inc.php';
 
+// HTTPS REDIRECT
+if(($REX['USE_SSL']===true || $REX['USE_SSL']==='backend') && $REX['PROTOCOL']!='https')
+{
+  header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+}
+
 // ----- addon/normal page path
 $REX['PAGEPATH'] = '';
 
@@ -282,9 +288,9 @@ if($REX['USER'])
 
     if(!$_SESSION['REDIRECT_REDAXO_AFTER_LOGIN']){
       header('Location: index.php?page='. $REX['PAGE']);
-      
+
     } else {
-      
+
       if($_SESSION['REDIRECT_REDAXO_AFTER_LOGIN']) {
         $redirect_to_url = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SESSION['REDIRECT_REDAXO_AFTER_LOGIN'];
         unset($_SESSION['REDIRECT_REDAXO_AFTER_LOGIN']);

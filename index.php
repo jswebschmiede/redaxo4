@@ -40,6 +40,12 @@ $REX['GG'] = true;
 $REX['HTDOCS_PATH'] = './';
 require './redaxo/include/master.inc.php';
 
+// HTTPS REDIRECT
+if(($REX['USE_SSL']===true || $REX['USE_SSL']==='frontend') && $REX['PROTOCOL']!='https')
+{
+  header('Location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+}
+
 // ----- INCLUDE ADDONS
 require_once $REX['INCLUDE_PATH'] . '/addons.inc.php';
 

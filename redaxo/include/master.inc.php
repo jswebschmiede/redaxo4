@@ -25,6 +25,10 @@ $REX['FILEPERM'] = octdec(664); // oktaler wert
 $REX['DIRPERM'] = octdec(775); // oktaler wert
 $REX['INSTNAME'] = "rex20120626100101";
 $REX['SESSION_DURATION'] = 3000;
+$REX['PROTOCOL'] = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http';
+
+// FORCE HTTPS FLAG
+$REX['USE_SSL'] = 'backend'; // String: "true"/"false"/"fronted"/"backend"
 
 // Is set first time SQL Object ist initialised
 $REX['MYSQL_VERSION'] = "";
